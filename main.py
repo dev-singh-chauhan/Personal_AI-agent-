@@ -262,6 +262,6 @@ def main_process():
          print(ai_response)
          speak(ai_response)
 
-
+ ## for the api you need to genrate your own
 
 main_process()           
