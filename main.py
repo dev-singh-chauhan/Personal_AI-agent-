@@ -233,7 +233,34 @@ def main_process():
    #         except Exception as e:
    #          speak("Sorry, I couldn't send the email. Please try again.")
    #          print("Error:", e)
+     elif  'wake up jarvis' in request :  # Example voice command: "ask AI what is the meaning of life?"
+        
+        engine = pyttsx3.init()
+        voices = engine.getProperty('voices')       #getting details of current voice
+        engine.setProperty('voice',voices[0].id)
+        engine.setProperty('rate',180)
+        speak("yes sir , Any Question? feel free to ask I can help you with that")
+        
+        while True: 
+         user_question = command()  # Function to capture voice input
 
+         if 'thanks jarvis' in user_question.lower():
+            speak("my pleasure sir, now friday will take care of you, if you need anthing please let me know")
+            
+            
+            engine.stop()  
+            engine = pyttsx3.init()  
+            voices = engine.getProperty('voices')  
+               
+               # Switch back to Female Voice (Voice 1) for Friday
+            engine.setProperty('voice', voices[1].id)  
+            engine.setProperty('rate', 160)
+            speak("Friday is now active, sir.")  
+            break  # Exit Jarvis mode
+
+         ai_response = openai_request.chat_with_ai(user_question)
+         print(ai_response)
+         speak(ai_response)
 
 
 
